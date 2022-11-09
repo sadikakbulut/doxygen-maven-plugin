@@ -1088,6 +1088,69 @@ public abstract class AbstractDoxygenConfigurationMojo extends AbstractMojo {
     private String htmlStylesheet;
 
     /**
+     * The HTML_EXTRA_STYLESHEET tag can be used to specify additional user-defined
+     * cascading style sheets that are included after the standard style sheets
+     * created by doxygen. Using this option one can overrule certain style aspects.
+     * This is preferred over using HTML_STYLESHEET since it does not replace the
+     * standard style sheet and is therefore more robust against future updates.
+     * Doxygen will copy the style sheet files to the output directory.
+     * Note: The order of the extra style sheet files is of importance (e.g. the last
+     * style sheet in the list overrules the setting of the previous ones in the
+     * list). For an example see the documentation.
+     * This tag requires that the tag GENERATE_HTML is set to YES.
+     */
+    @Parameter(property="doxygen.htmlExtraStylesheet")
+    private String htmlExtraStylesheet;
+
+    /**
+     * The HTML_EXTRA_FILES tag can be used to specify one or more extra images or
+     * other source files which should be copied to the HTML output directory. Note
+     * that these files will be copied to the base HTML output directory. Use the
+     * $relpath^ marker in the HTML_HEADER and/or HTML_FOOTER files to load these
+     * files. In the HTML_STYLESHEET file, use the file name only. Also note that the
+     * files will be copied as-is; there are no commands or markers available.
+     * This tag requires that the tag GENERATE_HTML is set to YES.
+     */
+    @Parameter(property="doxygen.htmlExtraFiles")
+    private String htmlExtraFiles;
+
+    /**
+     * The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. Doxygen
+     * will adjust the colors in the stylesheet and background images according to
+     * this color. Hue is specified as an angle on a colorwheel, see
+     * http://en.wikipedia.org/wiki/Hue for more information. For instance the value
+     * 0 represents red, 60 is yellow, 120 is green, 180 is cyan, 240 is blue, 300
+     * purple, and 360 is red again.
+     * Minimum value: 0, maximum value: 359, default value: 220.
+     * This tag requires that the tag GENERATE_HTML is set to YES.
+     */
+    @Parameter(property="doxygen.htmlColorStyleHue")
+    private String htmlColorStyleHue;
+
+    /**
+     * The HTML_COLORSTYLE_SAT tag controls the purity (or saturation) of the colors
+     * in the HTML output. For a value of 0 the output will use grayscales only. A
+     * value of 255 will produce the most vivid colors.
+     * Minimum value: 0, maximum value: 255, default value: 100.
+     * This tag requires that the tag GENERATE_HTML is set to YES.
+     */
+    @Parameter(property="doxygen.htmlColorStyleSat")
+    private String htmlColorStyleSat;
+
+    /**
+     * The HTML_COLORSTYLE_GAMMA tag controls the gamma correction applied to the
+     * luminance component of the colors in the HTML output. Values below 100
+     * gradually make the output lighter, whereas values above 100 make the output
+     * darker. The value divided by 100 is the actual gamma applied, so 80 represents
+     * a gamma of 0.8, The value 220 represents a gamma of 2.2, and 100 does not
+     * change the gamma.
+     * Minimum value: 40, maximum value: 240, default value: 80.
+     * This tag requires that the tag GENERATE_HTML is set to YES.
+     */
+    @Parameter(property="doxygen.htmlColorStyleGamma")
+    private String htmlColorStyleGamma;
+
+    /**
      * If the HTML_ALIGN_MEMBERS tag is set to YES, the members of classes,
      * files or namespaces will be aligned in HTML using tables. If set to NO a
      * bullet list will be used.
@@ -2864,6 +2927,46 @@ public abstract class AbstractDoxygenConfigurationMojo extends AbstractMojo {
 
     public void setHtmlStylesheet(String htmlStylesheet) {
         this.htmlStylesheet = htmlStylesheet;
+    }
+
+    public String getHtmlExtraStylesheet() {
+        return htmlExtraStylesheet;
+    }
+
+    public void setHtmlExtraStylesheet(String htmlExtraStylesheet) {
+        this.htmlExtraStylesheet = htmlExtraStylesheet;
+    }
+
+    public String getHtmlExtraFiles() {
+        return htmlExtraFiles;
+    }
+
+    public void setHtmlExtraFiles(String htmlExtraFiles) {
+        this.htmlExtraFiles = htmlExtraFiles;
+    }
+
+    public String getHtmlColorStyleHue() {
+        return htmlColorStyleHue;
+    }
+
+    public void setHtmlColorStyleHue(String htmlColorStyleHue) {
+        this.htmlColorStyleHue = htmlColorStyleHue;
+    }
+
+    public String getHtmlColorStyleSat() {
+        return htmlColorStyleSat;
+    }
+
+    public void setHtmlColorStyleSat(String htmlColorStyleSat) {
+        this.htmlColorStyleSat = htmlColorStyleSat;
+    }
+
+    public String getHtmlColorStyleGamma() {
+        return htmlColorStyleGamma;
+    }
+
+    public void setHtmlColorStyleGamma(String htmlColorStyleGamma) {
+        this.htmlColorStyleGamma = htmlColorStyleGamma;
     }
 
     public boolean isHtmlAlignMembers() {
