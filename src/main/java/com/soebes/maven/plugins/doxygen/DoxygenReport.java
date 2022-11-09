@@ -21,7 +21,8 @@
  */
 package com.soebes.maven.plugins.doxygen;
 
-import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+import org.apache.maven.doxia.sink.Sink;
 import org.apache.maven.doxia.siterenderer.Renderer;
 import org.apache.maven.doxia.siterenderer.sink.SiteRendererSink;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -33,7 +34,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.reporting.MavenReport;
 import org.apache.maven.reporting.MavenReportException;
-import org.codehaus.doxia.sink.Sink;
+
 import java.io.File;
 import java.util.Locale;
 
@@ -101,7 +102,7 @@ public class DoxygenReport
     }
     
     /** {@inheritDoc} */
-    public void generate( Sink sink, Locale locale )
+    public void generate(Sink sink, Locale locale )
         throws MavenReportException
     {
         setOutputDirectory(getReportOutputDirectory());
